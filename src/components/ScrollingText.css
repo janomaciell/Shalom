@@ -1,0 +1,28 @@
+.scrolling-container {
+  width: 100%;
+  overflow: hidden;
+  color: #000000;
+  padding: 1rem 0;
+  white-space: nowrap;
+}
+
+.scrolling-text {
+  display: inline-flex;
+  white-space: nowrap;
+}
+
+.text-item {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 2rem;
+  margin-right: 4rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+}
+
+@media (max-width: 768px) {
+  .text-item {
+    font-size: 1.5rem;
+    margin-right: 2rem;
+  }
+}

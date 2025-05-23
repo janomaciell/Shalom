@@ -1,0 +1,251 @@
+.about-page {
+  padding-top: 80px;
+}
+
+.about-hero {
+  background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+  padding: 5rem 0;
+  text-align: center;
+}
+
+.story-section {
+  padding: 5rem 0;
+  background-color: #FFFFFF;
+  color: #000000;
+}
+
+.story-section .section-title {
+  color: #000000;
+}
+
+.story-section .section-title::after {
+  background-color: #FFE465;
+}
+
+.story-content {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.story-text {
+  text-align: left;
+  line-height: 1.8;
+}
+
+.story-text p {
+  margin-bottom: 1.5rem;
+  font-size: 1.1rem;
+}
+
+.values-section {
+  padding: 5rem 0;
+  background-color: #111111;
+}
+
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.value-card {
+  background: rgba(254, 251, 234, 0.05);
+  border: 1px solid rgba(254, 251, 234, 0.1);
+  border-radius: 15px;
+  padding: 2rem;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.value-card:hover {
+  transform: translateY(-10px);
+  border-color: #FFE465;
+  box-shadow: 0 20px 40px rgba(255, 228, 101, 0.1);
+}
+
+.value-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.value-card h3 {
+  color: #FFE465;
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+}
+
+.value-card p {
+  color: #FEFBEA;
+  line-height: 1.6;
+}
+
+.team-section {
+  padding: 5rem 0;
+  background: linear-gradient(135deg, #1a1a1a 0%, #000000 100%);
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 3rem;
+}
+
+.team-member {
+  background: rgba(254, 251, 234, 0.05);
+  border-radius: 20px;
+  overflow: hidden;
+  transition: transform 0.4s ease;
+}
+
+.team-member:hover {
+  transform: translateY(-10px);
+}
+
+.member-image {
+  position: relative;
+  overflow: hidden;
+  height: 300px;
+}
+
+.member-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.team-member:hover .member-image img {
+  transform: scale(1.1);
+}
+
+.member-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.team-member:hover .member-overlay {
+  opacity: 1;
+}
+
+.member-skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.skill-tag {
+  background: linear-gradient(45deg, #FFE465, #FFA500);
+  color: #000000;
+  padding: 0.3rem 0.8rem;
+  border-radius: 15px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.member-info {
+  padding: 2rem;
+  text-align: center;
+}
+
+.member-info h3 {
+  color: #FFE465;
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+}
+
+.member-info h4 {
+  color: #FEFBEA;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  font-weight: 400;
+}
+
+.member-info p {
+  color: #FFFFFF;
+  line-height: 1.6;
+  font-size: 0.9rem;
+}
+
+.mission-vision-section {
+  padding: 5rem 0;
+  background-color: #FFFFFF;
+  color: #000000;
+}
+
+.mission-vision-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 3rem;
+}
+
+.mission-card,
+.vision-card {
+  background: linear-gradient(135deg, #000000, #1a1a1a);
+  color: #FFFFFF;
+  padding: 3rem;
+  border-radius: 20px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.mission-card::before,
+.vision-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #FFE465, #FFA500);
+}
+
+.mission-card h3,
+.vision-card h3 {
+  color: #FFE465;
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.mission-card p,
+.vision-card p {
+  color: #FEFBEA;
+  line-height: 1.8;
+  font-size: 1.1rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .story-text {
+    text-align: center;
+  }
+  
+  .values-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .team-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .mission-vision-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .mission-card,
+  .vision-card {
+    padding: 2rem;
+  }
+}
