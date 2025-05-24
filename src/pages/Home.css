@@ -247,12 +247,13 @@
   overflow: hidden;
   box-shadow: 0 8px 30px rgba(0,0,0,0.1);
   cursor: pointer;
-  transition: transform 0.3s ease;
+  transition: none !important;
   border: 1px solid rgba(255, 228, 101, 0.1);
+  transform: none !important; /* Fuerza que no haya transformaciones */
 }
 
 .client-card:hover {
-  transform: translateY(-5px) scale(1.02);
+  transform: none !important;
 }
 
 .card-tags {

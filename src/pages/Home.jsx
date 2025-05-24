@@ -142,17 +142,12 @@ const Home = () => {
       if (card) {
         gsap.fromTo(card,
           { 
-            opacity: 0, 
-            scale: 0,
-            rotation: 180
+            opacity: 0
           },
           {
             opacity: 1,
-            scale: 1,
-            rotation: 0,
-            duration: 0.8,
+            duration: 0.5,
             delay: index * 0.1,
-            ease: "back.out(1.7)",
             scrollTrigger: {
               trigger: ".clients-mosaic",
               start: "top 75%",
@@ -161,23 +156,13 @@ const Home = () => {
           }
         )
 
-        // Hover effect para cards
+        // Eliminamos todos los event listeners de hover
         card.addEventListener('mouseenter', () => {
-          gsap.to(card, {
-            scale: 1.08,
-            rotation: 5,
-            duration: 0.3,
-            ease: "power2.out"
-          })
+          // No hacemos nada
         })
 
         card.addEventListener('mouseleave', () => {
-          gsap.to(card, {
-            scale: 1,
-            rotation: 0,
-            duration: 0.3,
-            ease: "power2.out"
-          })
+          // No hacemos nada
         })
       }
     })
@@ -321,6 +306,7 @@ const Home = () => {
           </div>
         </div>
       </section>
+      <ScrollingText />
 
       {/* Nuestros Clientes - Estilo Mosaico */}
       <section className="section clients modern-clients">
@@ -359,7 +345,6 @@ const Home = () => {
         </div>
       </section>
 
-      <ScrollingText />
 
       {/* Misión - Minimalista */}
       <section className="section mission modern-mission">

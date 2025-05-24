@@ -1,7 +1,8 @@
 .scrolling-container {
   width: 100%;
   overflow: hidden;
-  color: #000000;
+  color: #FFE465;
+  background-color: #000000;
   padding: 1rem 0;
   white-space: nowrap;
 }

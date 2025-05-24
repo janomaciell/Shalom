@@ -50,27 +50,27 @@ const Contact = () => {
     const ctx = gsap.context(() => {
       // Hero entrance
       const heroTl = gsap.timeline();
-      heroTl.fromTo('.hero-badge', 
+      heroTl.fromTo('.hero-badge',
         { opacity: 0, scale: 0, rotation: -180 },
         { opacity: 1, scale: 1, rotation: 0, duration: 1, ease: 'back.out(1.7)' }
       )
-      .fromTo('.hero-title', 
-        { opacity: 0, y: 80 },
-        { opacity: 1, y: 0, duration: 1.2, ease: 'power3.out' }, '-=0.6'
-      )
-      .fromTo('.hero-subtitle', 
-        { opacity: 0, y: 40 },
-        { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out' }, '-=0.8'
-      );
+        .fromTo('.hero-title',
+          { opacity: 0, y: 80 },
+          { opacity: 1, y: 0, duration: 1.2, ease: 'power3.out' }, '-=0.6'
+        )
+        .fromTo('.hero-subtitle',
+          { opacity: 0, y: 40 },
+          { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out' }, '-=0.8'
+        );
 
       // Form animation
       gsap.fromTo('.form-container',
         { opacity: 0, y: 60, scale: 0.95 },
-        { 
-          opacity: 1, 
-          y: 0, 
+        {
+          opacity: 1,
+          y: 0,
           scale: 1,
-          duration: 1, 
+          duration: 1,
           ease: 'power3.out',
           scrollTrigger: {
             trigger: formRef.current,
@@ -83,10 +83,10 @@ const Contact = () => {
       // FAQ items animation
       gsap.fromTo('.faq-item',
         { opacity: 0, x: -50 },
-        { 
-          opacity: 1, 
+        {
+          opacity: 1,
           x: 0,
-          duration: 0.6, 
+          duration: 0.6,
           stagger: 0.1,
           ease: 'power2.out',
           scrollTrigger: {
@@ -100,10 +100,10 @@ const Contact = () => {
       // Contact info animation
       gsap.fromTo('.contact-info',
         { opacity: 0, y: 30 },
-        { 
-          opacity: 1, 
+        {
+          opacity: 1,
           y: 0,
-          duration: 0.8, 
+          duration: 0.8,
           ease: 'power2.out',
           scrollTrigger: {
             trigger: contactInfoRef.current,
@@ -116,7 +116,7 @@ const Contact = () => {
       // WhatsApp floating button animations
       const whatsappBtn = whatsappFloatRef.current;
       const thread = whatsappThreadRef.current;
-      
+
       if (whatsappBtn && thread) {
         // Breathing animation
         gsap.to(whatsappBtn, {
@@ -136,7 +136,7 @@ const Contact = () => {
         });
 
         // Thread drawing animation
-        gsap.set(thread.querySelector('circle'), { 
+        gsap.set(thread.querySelector('circle'), {
           drawSVG: "0% 30%"
         });
 
@@ -150,10 +150,10 @@ const Contact = () => {
 
         // Hover effects
         whatsappBtn.addEventListener('mouseenter', () => {
-          gsap.to(whatsappBtn, { 
-            scale: 1.2, 
+          gsap.to(whatsappBtn, {
+            scale: 1.2,
             duration: 0.3,
-            ease: 'back.out(1.4)' 
+            ease: 'back.out(1.4)'
           });
           gsap.to('.whatsapp-pulse', {
             scale: 1.5,
@@ -163,10 +163,10 @@ const Contact = () => {
         });
 
         whatsappBtn.addEventListener('mouseleave', () => {
-          gsap.to(whatsappBtn, { 
-            scale: 1, 
+          gsap.to(whatsappBtn, {
+            scale: 1,
             duration: 0.3,
-            ease: 'power2.out' 
+            ease: 'power2.out'
           });
           gsap.to('.whatsapp-pulse', {
             scale: 1,
@@ -191,19 +191,19 @@ const Contact = () => {
       const inputs = document.querySelectorAll('.form-input');
       inputs.forEach(input => {
         input.addEventListener('focus', () => {
-          gsap.to(input, { 
+          gsap.to(input, {
             scale: 1.02,
             borderColor: '#e91e63',
             duration: 0.3,
-            ease: 'power2.out' 
+            ease: 'power2.out'
           });
         });
         input.addEventListener('blur', () => {
-          gsap.to(input, { 
+          gsap.to(input, {
             scale: 1,
             borderColor: 'rgba(0,0,0,0.1)',
             duration: 0.3,
-            ease: 'power2.out' 
+            ease: 'power2.out'
           });
         });
       });
@@ -212,10 +212,10 @@ const Contact = () => {
       const submitBtn = document.querySelector('.submit-btn');
       if (submitBtn) {
         submitBtn.addEventListener('mouseenter', () => {
-          gsap.to('.submit-btn-bg', { 
-            scaleX: 1, 
-            duration: 0.4, 
-            ease: 'power2.out' 
+          gsap.to('.submit-btn-bg', {
+            scaleX: 1,
+            duration: 0.4,
+            ease: 'power2.out'
           });
           gsap.to('.submit-arrow', {
             x: 5,
@@ -223,10 +223,10 @@ const Contact = () => {
           });
         });
         submitBtn.addEventListener('mouseleave', () => {
-          gsap.to('.submit-btn-bg', { 
-            scaleX: 0, 
-            duration: 0.4, 
-            ease: 'power2.out' 
+          gsap.to('.submit-btn-bg', {
+            scaleX: 0,
+            duration: 0.4,
+            ease: 'power2.out'
           });
           gsap.to('.submit-arrow', {
             x: 0,
@@ -252,8 +252,8 @@ const Contact = () => {
     setIsLoading(true);
 
     // Loading animation
-    gsap.to('.submit-btn', { 
-      scale: 0.95, 
+    gsap.to('.submit-btn', {
+      scale: 0.95,
       duration: 0.1,
       onComplete: () => {
         gsap.to('.loading-spinner', {
@@ -268,20 +268,20 @@ const Contact = () => {
     try {
       await new Promise(resolve => setTimeout(resolve, 2000));
       setIsSuccess(true);
-      
-      gsap.to('.form-container', { 
-        opacity: 0, 
+
+      gsap.to('.form-container', {
+        opacity: 0,
         y: -20,
         duration: 0.5,
         onComplete: () => {
-          gsap.fromTo('.success-message', 
+          gsap.fromTo('.success-message',
             { opacity: 0, scale: 0.8, y: 20 },
-            { 
-              opacity: 1, 
-              scale: 1, 
+            {
+              opacity: 1,
+              scale: 1,
               y: 0,
-              duration: 0.8, 
-              ease: 'back.out(1.4)' 
+              duration: 0.8,
+              ease: 'back.out(1.4)'
             }
           );
         }
@@ -290,10 +290,10 @@ const Contact = () => {
       setTimeout(() => {
         setFormData({ name: '', email: '', message: '', service: '' });
         setIsSuccess(false);
-        gsap.to('.form-container', { 
-          opacity: 1, 
-          y: 0, 
-          duration: 0.5 
+        gsap.to('.form-container', {
+          opacity: 1,
+          y: 0,
+          duration: 0.5
         });
       }, 3000);
     } catch (err) {
@@ -323,13 +323,13 @@ const Contact = () => {
       }
       setOpenFaq(index);
       setTimeout(() => {
-        gsap.fromTo(`.faq-answer-${index}`, 
+        gsap.fromTo(`.faq-answer-${index}`,
           { height: 0, opacity: 0 },
-          { 
-            height: 'auto', 
-            opacity: 1, 
-            duration: 0.4, 
-            ease: 'power2.out' 
+          {
+            height: 'auto',
+            opacity: 1,
+            duration: 0.4,
+            ease: 'power2.out'
           }
         );
       }, 100);
@@ -340,20 +340,20 @@ const Contact = () => {
     <div className="contact-page">
       {/* Floating WhatsApp Button */}
       <div className="whatsapp-floating" ref={whatsappFloatRef}>
-        <a 
-          href="https://wa.me/2267405599" 
-          target="_blank" 
+        <a
+          href="https://wa.me/2267405599"
+          target="_blank"
           rel="noopener noreferrer"
           className="whatsapp-float-btn"
         >
           <div className="whatsapp-pulse"></div>
           <svg className="whatsapp-thread" ref={whatsappThreadRef} width="70" height="70" viewBox="0 0 70 70">
-            <circle 
-              cx="35" 
-              cy="35" 
-              r="25" 
-              fill="none" 
-              stroke="#25D366" 
+            <circle
+              cx="35"
+              cy="35"
+              r="25"
+              fill="none"
+              stroke="#25D366"
               strokeWidth="2"
               strokeDasharray="157"
             />
@@ -366,7 +366,7 @@ const Contact = () => {
       <section className="hero-section" ref={heroRef}>
         <div className="hero-container">
           <div className="hero-badge">🚀</div>
-          <h1 className="hero-title">Transformemos tu negocio</h1>
+          <h1 className="hero-title">Transforma tu negocio</h1>
           <p className="hero-subtitle">
             Estrategias digitales personalizadas que impulsan el crecimiento de tu empresa
           </p>
@@ -376,18 +376,18 @@ const Contact = () => {
       {/* Main Content Grid */}
       <section className="main-section">
         <div className="content-grid">
-          
+
           {/* Left Column - FAQ */}
           <div className="faq-section" ref={faqRef}>
             <div className="section-header">
               <h2 className="section-title pink-text">SOBRE NUESTROS SERVICIOS</h2>
               <div className="title-underline"></div>
             </div>
-            
+
             <div className="faq-list">
               {faqData.map((faq, index) => (
                 <div key={index} className="faq-item">
-                  <button 
+                  <button
                     className={`faq-question ${openFaq === index ? 'active' : ''}`}
                     onClick={() => toggleFaq(index)}
                   >
@@ -404,15 +404,15 @@ const Contact = () => {
 
           {/* Right Column - Form & Contact */}
           <div className="form-contact-section">
-            
+
             {/* Contact Form */}
             <div className="form-section" ref={formRef}>
               {!isSuccess ? (
                 <div className="form-container">
                   <div className="form-header">
                     <h3>Cuéntanos tu proyecto</h3>
+                    <h5 style={{ color: 'black' }}>Envíanos un correo</h5>
                   </div>
-                  
                   <form className="contact-form" onSubmit={handleSubmit}>
                     <div className="form-group">
                       <input
@@ -425,7 +425,6 @@ const Contact = () => {
                         required
                       />
                     </div>
-                    
                     <div className="form-group">
                       <input
                         type="email"
@@ -438,7 +437,6 @@ const Contact = () => {
                       />
                       <div className="email-arrow">→</div>
                     </div>
-                    
                     <div className="form-group">
                       <select
                         name="service"
@@ -456,7 +454,6 @@ const Contact = () => {
                         <option value="consulting">🚀 Consultoría Digital</option>
                       </select>
                     </div>
-                    
                     <div className="form-group">
                       <textarea
                         name="message"
@@ -468,9 +465,8 @@ const Contact = () => {
                         required
                       ></textarea>
                     </div>
-                    
-                    <button 
-                      type="submit" 
+                    <button
+                      type="submit"
                       className="submit-btn"
                       disabled={isLoading}
                     >
@@ -499,8 +495,6 @@ const Contact = () => {
                 </div>
               )}
             </div>
-
-            {/* Contact Info */}
             <div className="contact-section" ref={contactInfoRef}>
               <h3 className="contact-title">Contacto</h3>
               <div className="contact-info">
@@ -509,21 +503,21 @@ const Contact = () => {
                   hola@shalomagency.com
                 </a>
                 <div className="contact-whatsapp">
-                  <a 
-                    href="https://wa.me/2267405599?text=¡Hola!%20Me%20interesa%20conocer%20sus%20servicios" 
-                    target="_blank" 
+                  <a
+                    href="https://wa.me/2267405599?text=¡Hola!%20Me%20interesa%20conocer%20sus%20servicios"
+                    target="_blank"
                     rel="noopener noreferrer"
                     className="whatsapp-contact-btn"
                   >
                     <span>WhatsApp</span>
                     <div className="whatsapp-thread-small">
                       <svg width="40" height="40" viewBox="0 0 40 40">
-                        <circle 
-                          cx="20" 
-                          cy="20" 
-                          r="15" 
-                          fill="none" 
-                          stroke="#25D366" 
+                        <circle
+                          cx="20"
+                          cy="20"
+                          r="15"
+                          fill="none"
+                          stroke="#25D366"
                           strokeWidth="2"
                           strokeDasharray="94"
                         />
@@ -549,13 +543,13 @@ const Contact = () => {
                 <span className="social-name">Instagram</span>
                 <span className="social-username">@shalomagency</span>
               </a>
-              
+
               <a href="https://facebook.com/shalomagency" className="social-item facebook">
                 <span className="social-icon">👥</span>
                 <span className="social-name">Facebook</span>
                 <span className="social-username">@shalomagency</span>
               </a>
-              
+
               <a href="https://tiktok.com/@shalomagency" className="social-item tiktok">
                 <span className="social-icon">🎵</span>
                 <span className="social-name">TikTok</span>
