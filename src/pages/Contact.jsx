@@ -1,301 +1,572 @@
-import React, { useEffect, useRef, useState } from 'react'
-import PropTypes from 'prop-types'
-import { gsap } from 'gsap'
-import ScrollingText from '../components/ScrollingText'
-import './Contact.css'
+import React, { useEffect, useRef, useState } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import './Contact.css';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    company: '',
-    service: '',
-    budget: '',
-    message: ''
-  })
-  const [isLoading, setIsLoading] = useState(false)
-  const [error, setError] = useState(null)
-  
-  const contactRef = useRef(null)
-  const formRef = useRef(null)
+    message: '',
+    service: ''
+  });
+  const [isLoading, setIsLoading] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [openFaq, setOpenFaq] = useState(null);
+
+  const heroRef = useRef(null);
+  const formRef = useRef(null);
+  const faqRef = useRef(null);
+  const whatsappFloatRef = useRef(null);
+  const whatsappThreadRef = useRef(null);
+  const contactInfoRef = useRef(null);
+
+  const faqData = [
+    {
+      question: "¿Qué servicios ofrece la agencia?",
+      answer: "Ofrecemos desarrollo web, branding, social media, diseño gráfico, SEO, marketing digital y consultoría estratégica. Cada proyecto se adapta a las necesidades específicas de tu negocio."
+    },
+    {
+      question: "¿Trabajan con empresas de cualquier industria?",
+      answer: "Sí, trabajamos con empresas de todos los sectores: tecnología, retail, salud, educación, restaurantes, servicios profesionales y más. Nuestra experiencia diversa nos permite adaptarnos a cualquier industria."
+    },
+    {
+      question: "¿Pueden desarrollar estrategias personalizadas?",
+      answer: "Absolutamente. Cada negocio es único, por eso desarrollamos estrategias 100% personalizadas basadas en tus objetivos, audiencia y mercado específico."
+    },
+    {
+      question: "¿Cuál es el tiempo de entrega promedio?",
+      answer: "Depende del proyecto. Un sitio web puede tomar 2-4 semanas, una estrategia de branding 1-2 semanas, y campañas de marketing digital se implementan en 3-5 días hábiles."
+    },
+    {
+      question: "¿Ofrecen soporte post-lanzamiento?",
+      answer: "Sí, incluimos soporte técnico por 30 días y ofrecemos planes de mantenimiento mensual para mantener tu proyecto actualizado y optimizado."
+    }
+  ];
 
   useEffect(() => {
-    const tl = gsap.timeline()
-    
-    tl.fromTo(formRef.current, 
-      { opacity: 0, x: -100 }, 
-      { opacity: 1, x: 0, duration: 1, ease: "power2.out" }
-    )
-    .fromTo('.contact-info', 
-      { opacity: 0, x: 100 }, 
-      { opacity: 1, x: 0, duration: 1, ease: "power2.out" }, 
-      "-=0.8"
-    )
-    .fromTo('.contact-method', 
-      { opacity: 0, y: 50 }, 
-      { opacity: 1, y: 0, duration: 0.6, stagger: 0.1, ease: "power2.out" }, 
-      "-=0.5"
-    )
-  }, [])
+    const ctx = gsap.context(() => {
+      // Hero entrance
+      const heroTl = gsap.timeline();
+      heroTl.fromTo('.hero-badge', 
+        { opacity: 0, scale: 0, rotation: -180 },
+        { opacity: 1, scale: 1, rotation: 0, duration: 1, ease: 'back.out(1.7)' }
+      )
+      .fromTo('.hero-title', 
+        { opacity: 0, y: 80 },
+        { opacity: 1, y: 0, duration: 1.2, ease: 'power3.out' }, '-=0.6'
+      )
+      .fromTo('.hero-subtitle', 
+        { opacity: 0, y: 40 },
+        { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out' }, '-=0.8'
+      );
+
+      // Form animation
+      gsap.fromTo('.form-container',
+        { opacity: 0, y: 60, scale: 0.95 },
+        { 
+          opacity: 1, 
+          y: 0, 
+          scale: 1,
+          duration: 1, 
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: formRef.current,
+            start: 'top 80%',
+            toggleActions: 'play none none reverse'
+          }
+        }
+      );
+
+      // FAQ items animation
+      gsap.fromTo('.faq-item',
+        { opacity: 0, x: -50 },
+        { 
+          opacity: 1, 
+          x: 0,
+          duration: 0.6, 
+          stagger: 0.1,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: faqRef.current,
+            start: 'top 85%',
+            toggleActions: 'play none none reverse'
+          }
+        }
+      );
+
+      // Contact info animation
+      gsap.fromTo('.contact-info',
+        { opacity: 0, y: 30 },
+        { 
+          opacity: 1, 
+          y: 0,
+          duration: 0.8, 
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: contactInfoRef.current,
+            start: 'top 85%',
+            toggleActions: 'play none none reverse'
+          }
+        }
+      );
+
+      // WhatsApp floating button animations
+      const whatsappBtn = whatsappFloatRef.current;
+      const thread = whatsappThreadRef.current;
+      
+      if (whatsappBtn && thread) {
+        // Breathing animation
+        gsap.to(whatsappBtn, {
+          scale: 1.1,
+          duration: 2,
+          ease: 'power1.inOut',
+          repeat: -1,
+          yoyo: true
+        });
+
+        // Thread rotation
+        gsap.to(thread, {
+          rotation: 360,
+          duration: 4,
+          ease: 'none',
+          repeat: -1
+        });
+
+        // Thread drawing animation
+        gsap.set(thread.querySelector('circle'), { 
+          drawSVG: "0% 30%"
+        });
+
+        gsap.to(thread.querySelector('circle'), {
+          drawSVG: "0% 100%",
+          duration: 3,
+          ease: 'power1.inOut',
+          repeat: -1,
+          yoyo: true
+        });
+
+        // Hover effects
+        whatsappBtn.addEventListener('mouseenter', () => {
+          gsap.to(whatsappBtn, { 
+            scale: 1.2, 
+            duration: 0.3,
+            ease: 'back.out(1.4)' 
+          });
+          gsap.to('.whatsapp-pulse', {
+            scale: 1.5,
+            opacity: 0.8,
+            duration: 0.3
+          });
+        });
+
+        whatsappBtn.addEventListener('mouseleave', () => {
+          gsap.to(whatsappBtn, { 
+            scale: 1, 
+            duration: 0.3,
+            ease: 'power2.out' 
+          });
+          gsap.to('.whatsapp-pulse', {
+            scale: 1,
+            opacity: 0.6,
+            duration: 0.3
+          });
+        });
+
+        // Click effect
+        whatsappBtn.addEventListener('click', () => {
+          gsap.to(whatsappBtn, {
+            scale: 0.9,
+            duration: 0.1,
+            onComplete: () => {
+              gsap.to(whatsappBtn, { scale: 1.2, duration: 0.2 });
+            }
+          });
+        });
+      }
+
+      // Form input animations
+      const inputs = document.querySelectorAll('.form-input');
+      inputs.forEach(input => {
+        input.addEventListener('focus', () => {
+          gsap.to(input, { 
+            scale: 1.02,
+            borderColor: '#e91e63',
+            duration: 0.3,
+            ease: 'power2.out' 
+          });
+        });
+        input.addEventListener('blur', () => {
+          gsap.to(input, { 
+            scale: 1,
+            borderColor: 'rgba(0,0,0,0.1)',
+            duration: 0.3,
+            ease: 'power2.out' 
+          });
+        });
+      });
+
+      // Submit button hover
+      const submitBtn = document.querySelector('.submit-btn');
+      if (submitBtn) {
+        submitBtn.addEventListener('mouseenter', () => {
+          gsap.to('.submit-btn-bg', { 
+            scaleX: 1, 
+            duration: 0.4, 
+            ease: 'power2.out' 
+          });
+          gsap.to('.submit-arrow', {
+            x: 5,
+            duration: 0.3
+          });
+        });
+        submitBtn.addEventListener('mouseleave', () => {
+          gsap.to('.submit-btn-bg', { 
+            scaleX: 0, 
+            duration: 0.4, 
+            ease: 'power2.out' 
+          });
+          gsap.to('.submit-arrow', {
+            x: 0,
+            duration: 0.3
+          });
+        });
+      }
+
+    }, [heroRef, formRef, faqRef, whatsappFloatRef, contactInfoRef]);
+
+    return () => ctx.revert();
+  }, []);
 
   const handleInputChange = (e) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
-    })
-  }
+    });
+  };
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
-    setIsLoading(true)
-    setError(null)
-    
+    e.preventDefault();
+    setIsLoading(true);
+
+    // Loading animation
+    gsap.to('.submit-btn', { 
+      scale: 0.95, 
+      duration: 0.1,
+      onComplete: () => {
+        gsap.to('.loading-spinner', {
+          rotation: 360,
+          duration: 1,
+          ease: 'none',
+          repeat: -1
+        });
+      }
+    });
+
     try {
-      // Aquí iría la lógica para enviar el formulario
-      console.log('Formulario enviado:', formData)
-      await new Promise(resolve => setTimeout(resolve, 1000)) // Simulación de envío
-      alert('¡Gracias por tu mensaje! Te contactaremos pronto.')
-      setFormData({
-        name: '',
-        email: '',
-        company: '',
-        service: '',
-        budget: '',
-        message: ''
-      })
+      await new Promise(resolve => setTimeout(resolve, 2000));
+      setIsSuccess(true);
+      
+      gsap.to('.form-container', { 
+        opacity: 0, 
+        y: -20,
+        duration: 0.5,
+        onComplete: () => {
+          gsap.fromTo('.success-message', 
+            { opacity: 0, scale: 0.8, y: 20 },
+            { 
+              opacity: 1, 
+              scale: 1, 
+              y: 0,
+              duration: 0.8, 
+              ease: 'back.out(1.4)' 
+            }
+          );
+        }
+      });
+
+      setTimeout(() => {
+        setFormData({ name: '', email: '', message: '', service: '' });
+        setIsSuccess(false);
+        gsap.to('.form-container', { 
+          opacity: 1, 
+          y: 0, 
+          duration: 0.5 
+        });
+      }, 3000);
     } catch (err) {
-      setError('Hubo un error al enviar el formulario. Por favor, intenta nuevamente.')
+      console.error('Error:', err);
     } finally {
-      setIsLoading(false)
+      setIsLoading(false);
     }
-  }
+  };
 
-  const contactMethods = [
-    {
-      icon: "📧",
-      title: "Email",
-      info: "hola@shalomagency.com",
-      description: "Respuesta en 24 horas",
-      link: "mailto:hola@shalomagency.com"
-    },
-    {
-      icon: "📱",
-      title: "WhatsApp",
-      info: "+1 (555) 123-4567",
-      description: "Respuesta inmediata",
-      link: "https://wa.me/15551234567"
-    },
-    {
-      icon: "📍",
-      title: "Oficina",
-      info: "Ciudad de México, MX",
-      description: "Citas con previa programación",
-      link: "#"
-    },
-    {
-      icon: "📷",
-      title: "Instagram",
-      info: "@shalomagency",
-      description: "Síguenos para contenido exclusivo",
-      link: "https://instagram.com/shalomagency"
-    },
-    {
-      icon: "💼",
-      title: "LinkedIn",
-      info: "Shalom Agency",
-      description: "Conecta con nosotros profesionalmente",
-      link: "https://linkedin.com/company/shalomagency"
-    },
-    {
-      icon: "🎵",
-      title: "TikTok",
-      info: "@shalomagency",
-      description: "Contenido creativo y tendencias",
-      link: "https://tiktok.com/@shalomagency"
+  const toggleFaq = (index) => {
+    if (openFaq === index) {
+      gsap.to(`.faq-answer-${index}`, {
+        height: 0,
+        opacity: 0,
+        duration: 0.3,
+        ease: 'power2.out'
+      });
+      setOpenFaq(null);
+    } else {
+      if (openFaq !== null) {
+        gsap.to(`.faq-answer-${openFaq}`, {
+          height: 0,
+          opacity: 0,
+          duration: 0.3,
+          ease: 'power2.out'
+        });
+      }
+      setOpenFaq(index);
+      setTimeout(() => {
+        gsap.fromTo(`.faq-answer-${index}`, 
+          { height: 0, opacity: 0 },
+          { 
+            height: 'auto', 
+            opacity: 1, 
+            duration: 0.4, 
+            ease: 'power2.out' 
+          }
+        );
+      }, 100);
     }
-  ]
-
-  const services = [
-    "Community Management",
-    "Fotografía Profesional",
-    "Diseño Gráfico",
-    "Desarrollo Web",
-    "Estrategia Digital",
-    "Producción Audiovisual",
-    "Consultoría Digital"
-  ]
-
-  const budgetRanges = [
-    "Menos de $100.000",
-    "$100.000 - $300.000",
-    "$300.000 - $500.000",
-    "$500.000 - $1.000.000",
-    "Más de $1.000.000"
-  ]
+  };
 
   return (
     <div className="contact-page">
-      <div className="contact-hero">
-        <div className="container">
-          <h1 className="page-title">
-            <span className="sloop-font">Hablemos</span>
-            <span className="montserrat">de tu Proyecto</span>
-          </h1>
-          <p className="page-subtitle">
-            ¿Listo para transformar tu marca? Cuéntanos tu idea y hagámosla realidad juntos
-          </p>
-        </div>
+      {/* Floating WhatsApp Button */}
+      <div className="whatsapp-floating" ref={whatsappFloatRef}>
+        <a 
+          href="https://wa.me/2267405599" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="whatsapp-float-btn"
+        >
+          <div className="whatsapp-pulse"></div>
+          <svg className="whatsapp-thread" ref={whatsappThreadRef} width="70" height="70" viewBox="0 0 70 70">
+            <circle 
+              cx="35" 
+              cy="35" 
+              r="25" 
+              fill="none" 
+              stroke="#25D366" 
+              strokeWidth="2"
+              strokeDasharray="157"
+            />
+          </svg>
+          <div className="whatsapp-icon">💬</div>
+        </a>
       </div>
 
-      <ScrollingText />
+      {/* Hero Section */}
+      <section className="hero-section" ref={heroRef}>
+        <div className="hero-container">
+          <div className="hero-badge">🚀</div>
+          <h1 className="hero-title">Transformemos tu negocio</h1>
+          <p className="hero-subtitle">
+            Estrategias digitales personalizadas que impulsan el crecimiento de tu empresa
+          </p>
+        </div>
+      </section>
 
-      <section className="contact-section" ref={contactRef}>
-        <div className="container">
-          <div className="contact-grid">
-            <div className="contact-form-container" ref={formRef}>
-              <h2>Cuéntanos sobre tu proyecto</h2>
-              <form className="contact-form" onSubmit={handleSubmit}>
-                <div className="form-row">
-                  <div className="form-group">
-                    <label htmlFor="name">Nombre Completo *</label>
-                    <input
-                      type="text"
-                      id="name"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleInputChange}
-                      required
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label htmlFor="email">Email *</label>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleInputChange}
-                      required
-                    />
-                  </div>
-                </div>
-
-                <div className="form-row">
-                  <div className="form-group">
-                    <label htmlFor="company">Empresa</label>
-                    <input
-                      type="text"
-                      id="company"
-                      name="company"
-                      value={formData.company}
-                      onChange={handleInputChange}
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label htmlFor="service">Servicio de Interés</label>
-                    <select
-                      id="service"
-                      name="service"
-                      value={formData.service}
-                      onChange={handleInputChange}
-                    >
-                      <option value="">Selecciona un servicio</option>
-                      {services.map((service, index) => (
-                        <option key={index} value={service}>{service}</option>
-                      ))}
-                    </select>
-                  </div>
-                </div>
-
-                <div className="form-group">
-                  <label htmlFor="budget">Presupuesto Estimado</label>
-                  <select
-                    id="budget"
-                    name="budget"
-                    value={formData.budget}
-                    onChange={handleInputChange}
+      {/* Main Content Grid */}
+      <section className="main-section">
+        <div className="content-grid">
+          
+          {/* Left Column - FAQ */}
+          <div className="faq-section" ref={faqRef}>
+            <div className="section-header">
+              <h2 className="section-title pink-text">SOBRE NUESTROS SERVICIOS</h2>
+              <div className="title-underline"></div>
+            </div>
+            
+            <div className="faq-list">
+              {faqData.map((faq, index) => (
+                <div key={index} className="faq-item">
+                  <button 
+                    className={`faq-question ${openFaq === index ? 'active' : ''}`}
+                    onClick={() => toggleFaq(index)}
                   >
-                    <option value="">Selecciona un rango</option>
-                    {budgetRanges.map((range, index) => (
-                      <option key={index} value={range}>{range}</option>
-                    ))}
-                  </select>
+                    <span>{index + 1}. {faq.question}</span>
+                    <div className={`faq-icon ${openFaq === index ? 'rotated' : ''}`}>+</div>
+                  </button>
+                  <div className={`faq-answer faq-answer-${index}`}>
+                    <p>{faq.answer}</p>
+                  </div>
                 </div>
+              ))}
+            </div>
+          </div>
 
-                <div className="form-group">
-                  <label htmlFor="message">Cuéntanos sobre tu proyecto *</label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    rows="5"
-                    value={formData.message}
-                    onChange={handleInputChange}
-                    placeholder="Describe tu proyecto, objetivos y cualquier detalle relevante..."
-                    required
-                  ></textarea>
+          {/* Right Column - Form & Contact */}
+          <div className="form-contact-section">
+            
+            {/* Contact Form */}
+            <div className="form-section" ref={formRef}>
+              {!isSuccess ? (
+                <div className="form-container">
+                  <div className="form-header">
+                    <h3>Cuéntanos tu proyecto</h3>
+                  </div>
+                  
+                  <form className="contact-form" onSubmit={handleSubmit}>
+                    <div className="form-group">
+                      <input
+                        type="text"
+                        name="name"
+                        value={formData.name}
+                        onChange={handleInputChange}
+                        placeholder="Nombre"
+                        className="form-input"
+                        required
+                      />
+                    </div>
+                    
+                    <div className="form-group">
+                      <input
+                        type="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleInputChange}
+                        placeholder="Email"
+                        className="form-input"
+                        required
+                      />
+                      <div className="email-arrow">→</div>
+                    </div>
+                    
+                    <div className="form-group">
+                      <select
+                        name="service"
+                        value={formData.service}
+                        onChange={handleInputChange}
+                        className="form-input form-select"
+                        required
+                      >
+                        <option value="">Servicio de interés</option>
+                        <option value="branding">🎨 Branding & Identidad</option>
+                        <option value="web">💻 Desarrollo Web</option>
+                        <option value="social">📱 Social Media</option>
+                        <option value="design">✨ Diseño Gráfico</option>
+                        <option value="seo">🔍 SEO & Marketing</option>
+                        <option value="consulting">🚀 Consultoría Digital</option>
+                      </select>
+                    </div>
+                    
+                    <div className="form-group">
+                      <textarea
+                        name="message"
+                        rows="4"
+                        value={formData.message}
+                        onChange={handleInputChange}
+                        placeholder="Cuéntanos sobre tu proyecto, objetivos y timeline..."
+                        className="form-input form-textarea"
+                        required
+                      ></textarea>
+                    </div>
+                    
+                    <button 
+                      type="submit" 
+                      className="submit-btn"
+                      disabled={isLoading}
+                    >
+                      <div className="submit-btn-bg"></div>
+                      <span className="btn-content">
+                        {isLoading ? (
+                          <>
+                            <span className="loading-spinner">⏳</span>
+                            Enviando...
+                          </>
+                        ) : (
+                          <>
+                            Enviar mensaje
+                            <span className="submit-arrow">→</span>
+                          </>
+                        )}
+                      </span>
+                    </button>
+                  </form>
                 </div>
-
-                {error && <div className="error-message">{error}</div>}
-                
-                <button 
-                  type="submit" 
-                  className="submit-btn"
-                  disabled={isLoading}
-                >
-                  {isLoading ? 'Enviando...' : 'Enviar Mensaje'}
-                  {!isLoading && <span className="btn-arrow">→</span>}
-                </button>
-              </form>
+              ) : (
+                <div className="success-message">
+                  <div className="success-icon">🎉</div>
+                  <h3>¡Mensaje enviado con éxito!</h3>
+                  <p>Te contactaremos muy pronto</p>
+                </div>
+              )}
             </div>
 
-            <div className="contact-info">
-              <h2>Otras formas de contactarnos</h2>
-              <div className="contact-methods">
-                {contactMethods.map((method, index) => (
-                  <a
-                    key={index}
-                    href={method.link}
-                    className="contact-method"
-                    target={method.link.startsWith('http') ? '_blank' : '_self'}
-                    rel={method.link.startsWith('http') ? 'noopener noreferrer' : ''}
+            {/* Contact Info */}
+            <div className="contact-section" ref={contactInfoRef}>
+              <h3 className="contact-title">Contacto</h3>
+              <div className="contact-info">
+                <p className="contact-address">Av. Libertador, Buenos Aires, Arg.</p>
+                <a href="mailto:hola@shalomagency.com" className="contact-email">
+                  hola@shalomagency.com
+                </a>
+                <div className="contact-whatsapp">
+                  <a 
+                    href="https://wa.me/2267405599?text=¡Hola!%20Me%20interesa%20conocer%20sus%20servicios" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="whatsapp-contact-btn"
                   >
-                    <div className="method-icon">{method.icon}</div>
-                    <div className="method-content">
-                      <h4>{method.title}</h4>
-                      <p className="method-info">{method.info}</p>
-                      <p className="method-description">{method.description}</p>
+                    <span>WhatsApp</span>
+                    <div className="whatsapp-thread-small">
+                      <svg width="40" height="40" viewBox="0 0 40 40">
+                        <circle 
+                          cx="20" 
+                          cy="20" 
+                          r="15" 
+                          fill="none" 
+                          stroke="#25D366" 
+                          strokeWidth="2"
+                          strokeDasharray="94"
+                        />
+                      </svg>
                     </div>
                   </a>
-                ))}
+                </div>
               </div>
             </div>
+
           </div>
         </div>
       </section>
 
-      <ScrollingText text="COMENCEMOS A TRABAJAR JUNTOS" />
-
-      <section className="cta-section">
+      {/* Nueva sección independiente para redes sociales */}
+      <section className="social-networks-section">
         <div className="container">
-          <div className="cta-content">
-            <h2>¿Tienes una emergencia digital?</h2>
-            <p>
-              Para proyectos urgentes o consultas inmediatas, contáctanos directamente por WhatsApp. 
-              Nuestro equipo está listo para ayudarte.
-            </p>
-            <a href="https://wa.me/2267405599" className="emergency-btn" target="_blank" rel="noopener noreferrer">
-              WhatsApp Urgente
-              <span className="btn-icon">📱</span>
-            </a>
+          <div className="social-networks">
+            <h3 className="social-networks-title">Síguenos en redes sociales</h3>
+            <div className="social-grid">
+              <a href="https://instagram.com/shalomagency" className="social-item instagram">
+                <span className="social-icon">📸</span>
+                <span className="social-name">Instagram</span>
+                <span className="social-username">@shalomagency</span>
+              </a>
+              
+              <a href="https://facebook.com/shalomagency" className="social-item facebook">
+                <span className="social-icon">👥</span>
+                <span className="social-name">Facebook</span>
+                <span className="social-username">@shalomagency</span>
+              </a>
+              
+              <a href="https://tiktok.com/@shalomagency" className="social-item tiktok">
+                <span className="social-icon">🎵</span>
+                <span className="social-name">TikTok</span>
+                <span className="social-username">@shalomagency</span>
+              </a>
+            </div>
           </div>
         </div>
       </section>
     </div>
-  )
-}
+  );
+};
 
-ScrollingText.propTypes = {
-  text: PropTypes.string
-}
-
-export default Contact
+export default Contact;
