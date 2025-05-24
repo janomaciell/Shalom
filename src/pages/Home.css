@@ -317,10 +317,11 @@
 .mission .section-title {
   color: #fff;
   margin-bottom: 3rem;
+  
 }
 
 .mission-text-block {
-  max-width: 900px;
+  max-width: 1280px;
   margin: 0 auto;
 }
 
@@ -498,6 +499,17 @@
   .approach {
     padding: 4rem 0;
   }
+  .large-text {
+    font-size: 0.1rem;
+    line-height: 1.4;
+    max-width: 100%;
+    padding: 0.1 0.1rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+    text-align: center;
+    
+  }
 
   .clients {
     padding: 4rem 0;
@@ -514,6 +526,58 @@
   .hero-tagline {
     font-size: 0.8rem;
     letter-spacing: 2px;
+  }
+
+  .large-text .highlight {
+    display: inline-block;
+    margin: 0.2rem 0;
+    font-size: 1.5px;
+  }
+  
+}
+
+@media screen and (max-width: 600px) {
+  .hero-title {
+    font-size: clamp(2.5rem, 8vw, 4rem);
+    line-height: 1.1;
+  }
+
+  .hero-title .sloop-font {
+    font-size: 1em;
+  }
+
+  .hero-title .montserrat {
+    font-size: 0.6em;
+    letter-spacing: -1px;
+  }
+
+  .hero-subtitle {
+    font-size: 1rem;
+    max-width: 90%;
+  }
+
+  .section-title {
+    font-size: 2rem;
+  }
+
+  .approach-description,
+  .clients-subtitle,
+  .approach-item p,
+  .value p,
+  .regular-text {
+    font-size: 1rem;
+  }
+
+  .card-title {
+    font-size: 1.1rem;
+  }
+
+  .large-text {
+    font-size: 1.3rem;
+  }
+
+  .value h4 {
+    font-size: 1.2rem;
   }
 }
 

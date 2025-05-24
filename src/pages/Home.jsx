@@ -279,7 +279,9 @@ const Home = () => {
       <section className="section approach modern-approach">
         <div className="container">
           <div className="approach-header">
-            <h2 className="section-title modern-section-title">Nuestro enfoque</h2>
+            <h2 className="section-title modern-section-title" style={{ color: '#000000' }}>
+              Nuestro enfoque
+            </h2>
             <p className="approach-description">
               Diseñamos experiencias que generan impacto y resultados medibles, 
               creando conexiones auténticas que impulsan el crecimiento.

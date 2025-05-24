@@ -126,11 +126,11 @@ const Contact = () => {
   ]
 
   const budgetRanges = [
-    "Menos de $5,000",
-    "$5,000 - $10,000",
-    "$10,000 - $25,000",
-    "$25,000 - $50,000",
-    "Más de $50,000"
+    "Menos de $100.000",
+    "$100.000 - $300.000",
+    "$300.000 - $500.000",
+    "$500.000 - $1.000.000",
+    "Más de $1.000.000"
   ]
 
   return (
@@ -283,7 +283,7 @@ const Contact = () => {
               Para proyectos urgentes o consultas inmediatas, contáctanos directamente por WhatsApp. 
               Nuestro equipo está listo para ayudarte.
             </p>
-            <a href="https://wa.me/15551234567" className="emergency-btn" target="_blank" rel="noopener noreferrer">
+            <a href="https://wa.me/2267405599" className="emergency-btn" target="_blank" rel="noopener noreferrer">
               WhatsApp Urgente
               <span className="btn-icon">📱</span>
             </a>

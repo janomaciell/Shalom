@@ -74,7 +74,7 @@ const About = () => {
       name: "Miguel Torres",
       role: "Desarrollador Full Stack",
       bio: "Ingeniero en sistemas con expertise en desarrollo web moderno. Miguel construye experiencias digitales robustas y escalables utilizando las últimas tecnologías.",
-      skills: ["React", "Node.js", "Python", "DevOps"],
+      skills: ["React", "Django", "Python", "DevOps"],
       image: "https://via.placeholder.com/300x300/FFE465/000000?text=Miguel"
     },
     {
