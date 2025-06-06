@@ -1,13 +1,13 @@
 .portfolio-page {
   padding-top: 80px;
-  background: #0a0a0a;
+  background: #000000;
   min-height: 100vh;
 }
 
 .portfolio-hero {
   padding: 8rem 0 4rem;
   text-align: center;
-  background: #0a0a0a;
+  background: #000000;
 }
 
 .page-title {

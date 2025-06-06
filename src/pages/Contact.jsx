@@ -510,19 +510,7 @@ const Contact = () => {
                     className="whatsapp-contact-btn"
                   >
                     <span>WhatsApp</span>
-                    <div className="whatsapp-thread-small">
-                      <svg width="40" height="40" viewBox="0 0 40 40">
-                        <circle
-                          cx="20"
-                          cy="20"
-                          r="15"
-                          fill="none"
-                          stroke="#25D366"
-                          strokeWidth="2"
-                          strokeDasharray="94"
-                        />
-                      </svg>
-                    </div>
+
                   </a>
                 </div>
               </div>

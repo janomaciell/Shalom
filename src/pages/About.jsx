@@ -100,26 +100,27 @@ const About = () => {
 
   const values = [
     {
-      title: "INNOVACIÓN",
-      subtitle: "constante",
-      description: "Exploramos nuevas tecnologías y metodologías para mantener a nuestros clientes a la vanguardia"
+      title: "COMUNICACIÓN",
+      subtitle: "efectiva",
+      description: "Fomentamos el diálogo claro y constante para asegurar una comprensión mutua y resultados alineados."
     },
     {
-      title: "COLABORACIÓN", 
-      subtitle: "auténtica",
-      description: "Trabajamos como una extensión del equipo de nuestros clientes creando sinergias"
+      title: "DISCIPLINA",
+      subtitle: "profesional",
+      description: "Nuestro compromiso con la organización y la constancia garantiza entregas a tiempo y de alta calidad."
     },
     {
-      title: "EXCELENCIA",
-      subtitle: "sin compromiso", 
-      description: "Cada proyecto es una oportunidad para superar expectativas y establecer nuevos estándares"
+      title: "ATRIBUCIONES",
+      subtitle: "claras",
+      description: "Cada integrante conoce su rol y responsabilidades, lo que optimiza la eficiencia y evita malentendidos."
     },
     {
       title: "TRANSPARENCIA",
       subtitle: "total",
-      description: "Comunicación clara métricas reales y procesos transparentes en cada etapa"
+      description: "Compartimos métricas, procesos y decisiones con honestidad en cada etapa del trabajo."
     }
-  ]
+  ];
+
 
   return (
     <div className="about-page">
@@ -133,9 +134,9 @@ const About = () => {
           </div>
           <div className="container">
             <h1 className="hero-title">
-          NUESTRO<br />
+          <span className="white-text">NUESTRO</span><br />
           <span className="highlight">EQUIPO</span>
-            </h1>
+          </h1>
             <p className="hero-subtitle">
           Talento, pasión y trabajo en equipo para lograr grandes resultados.
             </p>

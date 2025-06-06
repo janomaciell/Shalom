@@ -358,7 +358,7 @@ const Home = () => {
                   Nuestra Misión
                 </h2>
                 <div className="large-text">
-                  Transformar las ideas de nuestros clientes en <span className="highlight">experiencias digitales exitosas</span> 
+                  Transformar las ideas de nuestros clientes en <span className="highlight">EXPERIENCIAS DIGITALES EXITOSAS </span> 
                   que generen conexiones auténticas con sus audiencias y resultados medibles para sus negocios.
                 </div>
                 <p className="regular-text">
@@ -376,7 +376,7 @@ const Home = () => {
                   Nuestra Visión
                 </h2>
                 <div className="large-text">
-                  Ser la <span className="highlight">agencia de referencia</span> en soluciones digitales integrales, 
+                  Ser la <span className="highlight">AGENCIA DE REFERENCIA</span> en soluciones digitales integrales, 
                   reconocida por nuestra excelencia creativa y resultados excepcionales.
                 </div>
                 <p className="regular-text">

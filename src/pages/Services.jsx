@@ -22,7 +22,7 @@ const Services = () => {
     tl.from('.hero-main-text', {
       duration: 1.5,
       y: 100,
-      opacity: 0,
+
       ease: "power3.out"
     })
     .from('.hero-sub-text', {
@@ -50,8 +50,8 @@ const Services = () => {
             ease: "power2.out",
             scrollTrigger: {
               trigger: el,
-              start: "top 85%",
-              end: "bottom 15%",
+              start: "top 50%",
+              end: "bottom 25%",
               toggleActions: "play none none reverse"
             }
           }
