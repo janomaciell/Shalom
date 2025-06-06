@@ -347,22 +347,46 @@ const Home = () => {
 
 
       {/* Misión - Minimalista */}
+{/* Misión y Visión - Sección formal y estructurada */}
       <section className="section mission modern-mission">
         <div className="container">
-          <div className="mission-content">
-            <div className="mission-text-block">
-              <h2 className="section-title modern-section-title">
-                Nuestra Misión
-              </h2>
-              <div className="large-text">
-                En Shalom Agency, nuestra misión es <span className="highlight">empoderar a las marcas</span> a través de 
-                soluciones digitales innovadoras y estrategias de marketing que generen un impacto real.
+          <div className="mission-vision-wrapper">
+            {/* Misión */}
+            <div className="mission-content">
+              <div className="mission-text-block">
+                <h2 className="section-title modern-section-title">
+                  Nuestra Misión
+                </h2>
+                <div className="large-text">
+                  Transformar las ideas de nuestros clientes en <span className="highlight">experiencias digitales exitosas</span> 
+                  que generen conexiones auténticas con sus audiencias y resultados medibles para sus negocios.
+                </div>
+                <p className="regular-text">
+                  A través de estrategias de marketing digital personalizadas, diseño innovador y 
+                  tecnología de vanguardia, acompañamos a las marcas en su crecimiento y 
+                  posicionamiento en el mercado digital.
+                </p>
               </div>
-              <p className="regular-text">
-                Creemos en la transformación digital como herramienta para construir conexiones 
-                auténticas entre las marcas y sus audiencias, generando crecimiento sostenible.
-              </p>
             </div>
+
+            {/* Visión */}
+            <div className="vision-content">
+              <div className="vision-text-block">
+                <h2 className="section-title modern-section-title">
+                  Nuestra Visión
+                </h2>
+                <div className="large-text">
+                  Ser la <span className="highlight">agencia de referencia</span> en soluciones digitales integrales, 
+                  reconocida por nuestra excelencia creativa y resultados excepcionales.
+                </div>
+                <p className="regular-text">
+                  Aspiramos a liderar la transformación digital de las empresas, estableciendo 
+                  nuevos estándares de calidad y innovación en la industria del marketing digital 
+                  y el desarrollo de experiencias de usuario.
+                </p>
+              </div>
+            </div>
+
           </div>
         </div>
       </section>
