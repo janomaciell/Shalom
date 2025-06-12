@@ -224,11 +224,14 @@ const Home = () => {
             <span className="sloop-font">Shalom</span>
             <span className="montserrat">Agency</span>
           </h1>
-          
           <p ref={subtitleRef} className="hero-subtitle modern-subtitle">
-            Somos un <span className="highlight">estudio creativo*</span> que transforma ideas en 
-            experiencias digitales extraordinarias que conectan, inspiran y generan resultados.
+          “Manténganse atentos y firmes en la fe; sean fuertes y valientes. Háganlo todo con amor.”
+
+
           </p>
+          <br />
+          <span className="highlight">1 Corintios 16:13-14</span>
+
 
           {/* Elementos decorativos */}
           <div className="decorative-elements">

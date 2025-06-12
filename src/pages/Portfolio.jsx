@@ -3,6 +3,7 @@ import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import ScrollingText from '../components/ScrollingText'
 import './Portfolio.css'
+import logoShalom from '../img/logo-shalom.png' // Añade esta línea
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -95,7 +96,7 @@ const Portfolio = () => {
       id: 1,
       title: "Crecimiento Digital",
       category: "redes-sociales",
-      image: "https://via.placeholder.com/600x400/0f0f0f/ffffff?text=01",
+      image: logoShalom, // Cambia esta línea
       description: "Estrategia integral que incrementó engagement 300%",
       client: "Restaurante Gourmet",
       metric: "+300% Engagement"
@@ -134,7 +135,11 @@ const Portfolio = () => {
     { key: 'redes-sociales', label: 'Redes' },
     { key: 'branding', label: 'Marca' },
     { key: 'desarrollo-web', label: 'Web' },
+        { key: 'Fotografia', label: 'Fotografia' },
     { key: 'video', label: 'Video' }
+
+     
+
   ]
 
   const filteredProjects = filter === 'todos' 

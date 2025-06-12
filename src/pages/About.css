@@ -24,7 +24,7 @@
 
 .floating-element {
   position: absolute;
-  color: #FFE465;
+  color: #EFD897;
 }
 
 .star-1 {
@@ -44,7 +44,7 @@
   right: 25%;
   width: 80px;
   height: 80px;
-  border: 2px solid #FFE465;
+  border: 2px solid #EFD897;
   border-radius: 50%;
   opacity: 0.3;
 }
@@ -54,7 +54,7 @@
   left: 20%;
   width: 60px;
   height: 60px;
-  background: linear-gradient(45deg, transparent, #FFE465);
+  background: linear-gradient(45deg, transparent, #EFD897);
   border-radius: 50%;
   opacity: 0.2;
 }
@@ -68,8 +68,8 @@
 }
 
 .hero-title .highlight {
-  color: #FFE465;
-  background: linear-gradient(45deg, #FFE465, #FFA500);
+  color: #EFD897;
+  background: linear-gradient(45deg, #EFD897, #FFA500);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -124,7 +124,7 @@
 }
 
 .member-role {
-  color: #FFE465;
+  color: #EFD897;
   font-size: 0.8rem;
   font-weight: 400;
   text-transform: uppercase;
@@ -169,7 +169,7 @@
 .values-sub-title {
   font-size: clamp(2rem, 4vw, 3rem);
   font-weight: 300;
-  color: #FFE465;
+  color: #EFD897;
   margin: 0;
   font-style: italic;
   letter-spacing: 0.05em;
@@ -198,7 +198,7 @@
 .value-subtitle {
   display: block;
   font-size: 1rem;
-  color: #FFE465;
+  color: #EFD897;
   font-weight: 300;
   font-style: italic;
   margin-bottom: 1rem;
